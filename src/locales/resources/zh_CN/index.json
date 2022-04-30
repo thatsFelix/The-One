@@ -1,0 +1,9 @@
+{
+  "common": {
+    "welcome": "欢迎"
+  },
+  "login": {
+    "noAccount": "还没有账户? ",
+    "getStart": "立即创建"
+  }
+}

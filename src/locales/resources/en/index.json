@@ -1,0 +1,9 @@
+{
+  "common": {
+    "welcome": "Welcome"
+  },
+  "login": {
+    "noAccount": "Don’t have an account? ",
+    "getStart": "Get Start"
+  }
+}

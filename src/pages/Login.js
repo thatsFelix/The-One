@@ -1,25 +1,28 @@
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 // @mui
-import { styled } from '@mui/material/styles';
-import { Card, Link, Container, Typography } from '@mui/material';
+import {styled} from '@mui/material/styles';
+import {Card, Link, Container, Typography, IconButton} from '@mui/material';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
 import Page from '../components/Page';
 import Logo from '../components/Logo';
 // sections
-import { LoginForm } from '../sections/auth/login';
+import {LoginForm} from '../sections/auth/login';
 import AuthSocial from '../sections/auth/AuthSocial';
+import {useTranslation} from 'react-i18next'
+import i18next from "i18next"
+import Iconify from "../components/Iconify";
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled('div')(({ theme }) => ({
+const RootStyle = styled('div')(({theme}) => ({
   [theme.breakpoints.up('md')]: {
     display: 'flex',
   },
 }));
 
-const HeaderStyle = styled('header')(({ theme }) => ({
+const HeaderStyle = styled('header')(({theme}) => ({
   top: 0,
   zIndex: 9,
   lineHeight: 0,
@@ -35,7 +38,7 @@ const HeaderStyle = styled('header')(({ theme }) => ({
   },
 }));
 
-const SectionStyle = styled(Card)(({ theme }) => ({
+const SectionStyle = styled(Card)(({theme}) => ({
   width: '100%',
   maxWidth: 464,
   display: 'flex',
@@ -44,7 +47,7 @@ const SectionStyle = styled(Card)(({ theme }) => ({
   margin: theme.spacing(2, 0, 2, 2),
 }));
 
-const ContentStyle = styled('div')(({ theme }) => ({
+const ContentStyle = styled('div')(({theme}) => ({
   maxWidth: 480,
   margin: 'auto',
   minHeight: '100vh',
@@ -58,20 +61,19 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function Login() {
   const smUp = useResponsive('up', 'sm');
-
   const mdUp = useResponsive('up', 'md');
+  const {t} = useTranslation();
 
   return (
     <Page title="Login">
       <RootStyle>
         <HeaderStyle>
-          <Logo />
-
+          <Logo/>
           {smUp && (
-            <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-              Don’t have an account? {''}
+            <Typography variant="body2" sx={{mt: {md: -2}}}>
+              {t("login.noAccount")}
               <Link variant="subtitle2" component={RouterLink} to="/register">
-                Get started
+                {t("login.getStart")}
               </Link>
             </Typography>
           )}
@@ -79,10 +81,10 @@ export default function Login() {
 
         {mdUp && (
           <SectionStyle>
-            <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
+            <Typography variant="h3" sx={{px: 5, mt: 10, mb: 5}}>
               Hi, Welcome
             </Typography>
-            <img src="/static/illustrations/illustration_login.png" alt="login" />
+            <img src="/static/illustrations/illustration_login.png" alt="login"/>
           </SectionStyle>
         )}
 
@@ -92,14 +94,25 @@ export default function Login() {
               Sign in to Minimal
             </Typography>
 
-            <Typography sx={{ color: 'text.secondary', mb: 5 }}>Enter your details below.</Typography>
+            <IconButton onClick={() => {
+              const current = i18next.language
+              if (current === "zh_CN") {
+                i18next.changeLanguage("en")
+              } else {
+                i18next.changeLanguage("zh_CN")
+              }
+            }} edge="end">
+              <Iconify icon='eva:eye-fill'/>
+            </IconButton>
 
-            <AuthSocial />
+            <Typography sx={{color: 'text.secondary', mb: 5}}>Enter your details below.</Typography>
 
-            <LoginForm />
+            <AuthSocial/>
+
+            <LoginForm/>
 
             {!smUp && (
-              <Typography variant="body2" align="center" sx={{ mt: 3 }}>
+              <Typography variant="body2" align="center" sx={{mt: 3}}>
                 Don’t have an account?{' '}
                 <Link variant="subtitle2" component={RouterLink} to="/register">
                   Get started
