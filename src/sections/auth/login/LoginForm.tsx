@@ -1,23 +1,24 @@
+import React from "react";
 import * as Yup from 'yup';
-import { useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useFormik, Form, FormikProvider } from 'formik';
+import {useState} from 'react';
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import {useFormik, Form, FormikProvider} from 'formik';
+import {useTranslation} from "react-i18next"
 // material
-import { Link, Stack, Checkbox, TextField, IconButton, InputAdornment, FormControlLabel } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
+import {Link, Stack, Checkbox, TextField, IconButton, InputAdornment, FormControlLabel} from '@mui/material';
+import {LoadingButton} from '@mui/lab';
 // component
 import Iconify from '../../../components/Iconify';
 
-// ----------------------------------------------------------------------
-
 export default function LoginForm() {
+  const {t} = useTranslation()
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string().email('Email must be a valid email address').required('Email is required'),
-    password: Yup.string().required('Password is required'),
+    email: Yup.string().email(t('login.loginForm.emailInvalid')).required(t('login.loginForm.emailRequired')),
+    password: Yup.string().required(t('login.loginForm.passwordRequired')),
   });
 
   const formik = useFormik({
@@ -28,11 +29,11 @@ export default function LoginForm() {
     },
     validationSchema: LoginSchema,
     onSubmit: () => {
-      navigate('/dashboard', { replace: true });
+      navigate('/dashboard', {replace: true});
     },
   });
 
-  const { errors, touched, values, isSubmitting, handleSubmit, getFieldProps } = formik;
+  const {errors, touched, values, isSubmitting, handleSubmit, getFieldProps} = formik;
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
@@ -46,7 +47,7 @@ export default function LoginForm() {
             fullWidth
             autoComplete="username"
             type="email"
-            label="Email address"
+            label={t('common.emailAddress')}
             {...getFieldProps('email')}
             error={Boolean(touched.email && errors.email)}
             helperText={touched.email && errors.email}
@@ -56,13 +57,13 @@ export default function LoginForm() {
             fullWidth
             autoComplete="current-password"
             type={showPassword ? 'text' : 'password'}
-            label="Password"
+            label={t('common.password')}
             {...getFieldProps('password')}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={handleShowPassword} edge="end">
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
+                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'}/>
                   </IconButton>
                 </InputAdornment>
               ),
@@ -72,19 +73,19 @@ export default function LoginForm() {
           />
         </Stack>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ my: 2 }}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{my: 2}}>
           <FormControlLabel
-            control={<Checkbox {...getFieldProps('remember')} checked={values.remember} />}
-            label="Remember me"
+            control={<Checkbox {...getFieldProps('remember')} checked={values.remember}/>}
+            label={t('login.loginForm.rememberMe')}
           />
 
           <Link component={RouterLink} variant="subtitle2" to="#" underline="hover">
-            Forgot password?
+            {t('login.loginForm.forgetPassword')}
           </Link>
         </Stack>
 
         <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
-          Login
+          {t('login.loginForm.login')}
         </LoadingButton>
       </Form>
     </FormikProvider>

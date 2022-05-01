@@ -1,9 +1,59 @@
 {
   "common": {
-    "welcome": "欢迎"
+    "welcome": "欢迎",
+    "emailAddress": "邮箱",
+    "password": "密码",
+    "termsOfService": "服务条款",
+    "privacyPolicy": "隐私政策",
+    "and": "和"
+  },
+  "navBar": {
+    "recommends": {
+      "index":  "推荐"
+    },
+    "community": {
+      "index": "技术分享",
+      "blog": "博客",
+      "note": "笔记",
+      "qaa": "问答"
+    },
+    "greatTime": {
+      "index": "生活分享"
+    },
+    "aboutFelix": {
+      "index": "关于Felix",
+      "projects": "项目展示",
+      "introduction": "介绍"
+    }
   },
   "login": {
+    "slogan": "不念过往, 不畏将来",
     "noAccount": "还没有账户? ",
-    "getStart": "立即创建"
+    "getStart": "立即创建",
+    "title": "登录HiFelix",
+    "loginForm": {
+      "rememberMe": "记住我",
+      "forgetPassword": "忘记密码?",
+      "login": "登录",
+      "emailRequire": "请输入邮箱",
+      "emailInvalid": "邮箱地址不合法",
+      "passwordRequired": "请输入密码"
+    }
+  },
+  "register": {
+    "slogan": "愿你走出半生, 归来仍是少年 ",
+    "haveAccount": "已经有账号? ",
+    "goLogin": "去登录",
+    "title": "注册HiFelix账号",
+    "agreePolicy": "我同意HiFelix的 ",
+    "registerForm": {
+      "firstName": "姓氏",
+      "lastName": "名字",
+      "register": "注册",
+      "tooShort": "太长了!",
+      "tooLong": "太短了!",
+      "firstNameRequired": "请输入姓氏",
+      "LastNameRequired": "请输入名字"
+    }
   }
 }

@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink as RouterLink, matchPath, useLocation } from 'react-router-dom';
-// material
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
-//
 import Iconify from './Iconify';
-
-// ----------------------------------------------------------------------
+import { useTranslation } from  "react-i18next"
 
 const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props} />)(({ theme }) => ({
   ...theme.typography.body2,
@@ -35,14 +32,11 @@ NavItem.propTypes = {
 };
 
 function NavItem({ item, active }) {
+  const {t} = useTranslation()
   const theme = useTheme();
-
   const isActiveRoot = active(item.path);
-
   const { title, path, icon, info, children } = item;
-
   const [open, setOpen] = useState(isActiveRoot);
-
   const handleOpen = () => {
     setOpen((prev) => !prev);
   };
@@ -68,7 +62,7 @@ function NavItem({ item, active }) {
           }}
         >
           <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
-          <ListItemText disableTypography primary={title} />
+          <ListItemText disableTypography primary={t(title)} />
           {info && info}
           <Iconify
             icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
@@ -110,7 +104,7 @@ function NavItem({ item, active }) {
                       }}
                     />
                   </ListItemIconStyle>
-                  <ListItemText disableTypography primary={title} />
+                  <ListItemText disableTypography primary={t(title)} />
                 </ListItemStyle>
               );
             })}
@@ -129,7 +123,7 @@ function NavItem({ item, active }) {
       }}
     >
       <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
-      <ListItemText disableTypography primary={title} />
+      <ListItemText disableTypography primary={t(title)} />
       {info && info}
     </ListItemStyle>
   );

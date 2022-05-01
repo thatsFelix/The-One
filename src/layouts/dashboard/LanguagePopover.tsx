@@ -1,27 +1,24 @@
+import React from "react";
 import { useRef, useState } from 'react';
 // material
 import { alpha } from '@mui/material/styles';
 import { Box, MenuItem, Stack, IconButton } from '@mui/material';
 // components
 import MenuPopover from '../../components/MenuPopover';
+import { changeLanguage } from "i18next"
 
 // ----------------------------------------------------------------------
 
 const LANGS = [
   {
+    value: 'zh_CN',
+    label: "中文",
+    icon: '/static/icons/ic_flag_zh_CN.svg',
+  },
+  {
     value: 'en',
     label: 'English',
     icon: '/static/icons/ic_flag_en.svg',
-  },
-  {
-    value: 'de',
-    label: 'German',
-    icon: '/static/icons/ic_flag_de.svg',
-  },
-  {
-    value: 'fr',
-    label: 'French',
-    icon: '/static/icons/ic_flag_fr.svg',
   },
 ];
 
@@ -39,6 +36,11 @@ export default function LanguagePopover() {
     setOpen(false);
   };
 
+  const handleSelectLanguage = (lan: string) =>  {
+    handleClose()
+    changeLanguage(lan)
+  }
+
   return (
     <>
       <IconButton
@@ -53,7 +55,7 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <img width={28} src={LANGS[0].icon} alt={LANGS[0].label} />
       </IconButton>
 
       <MenuPopover
@@ -69,7 +71,7 @@ export default function LanguagePopover() {
       >
         <Stack spacing={0.75}>
           {LANGS.map((option) => (
-            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleClose()}>
+            <MenuItem key={option.value} selected={option.value === LANGS[0].value} onClick={() => handleSelectLanguage(option.value)}>
               <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
 
               {option.label}

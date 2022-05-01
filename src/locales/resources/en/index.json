@@ -1,9 +1,59 @@
 {
   "common": {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "and": "and"
+  },
+  "navBar": {
+    "recommends": {
+      "index":  "Recommends"
+    },
+    "community": {
+      "index": "Community",
+      "blog": "Blog",
+      "note": "Note",
+      "qaa": "Q&A"
+    },
+    "greatTime": {
+      "index": "Great time"
+    },
+    "aboutFelix": {
+      "index": "About Felix",
+      "projects": "Projects",
+      "introduction": "Introduction"
+    }
   },
   "login": {
+    "slogan": "Work hard!Play hard!",
     "noAccount": "Don’t have an account? ",
-    "getStart": "Get Start"
+    "getStart": "Get Start",
+    "title": "Sign in to HiFelix",
+    "loginForm": {
+      "emailAddress": "Email address",
+      "password": "Email address",
+      "rememberMe": "Remember me",
+      "forgetPassword": "Forget password?",
+      "login": "Login",
+      "emailRequire": "Email must be a valid email address",
+      "emailInvalid": "Email is required",
+      "passwordRequired": "Password is required"
+    }
+  },
+  "register": {
+    "slogan": "Greatest off all time! ",
+    "haveAccount": "Already have an account? ",
+    "goLogin": "Login",
+    "agreePolicy": "By registering, I agree to HiFelix ",
+    "title": "Sign up a HiFelix account",
+    "registerForm": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "register": "Register",
+      "tooShort": "Too Short!",
+      "tooLong": "Too Long!",
+      "firstNameRequired": "First name required",
+      "LastNameRequired": "Last name required"
+    }
   }
 }

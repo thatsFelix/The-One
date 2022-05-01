@@ -1,18 +1,14 @@
+import React from "react";
 import {Link as RouterLink} from 'react-router-dom';
-// @mui
 import {styled} from '@mui/material/styles';
-import {Card, Link, Container, Typography, IconButton} from '@mui/material';
-// hooks
+import {Card, Link, Container, Typography, Grid,} from '@mui/material';
 import useResponsive from '../hooks/useResponsive';
-// components
 import Page from '../components/Page';
 import Logo from '../components/Logo';
-// sections
 import {LoginForm} from '../sections/auth/login';
-import AuthSocial from '../sections/auth/AuthSocial';
 import {useTranslation} from 'react-i18next'
 import i18next from "i18next"
-import Iconify from "../components/Iconify";
+import LanguagePopover from "../layouts/dashboard/LanguagePopover"
 
 // ----------------------------------------------------------------------
 
@@ -64,25 +60,43 @@ export default function Login() {
   const mdUp = useResponsive('up', 'md');
   const {t} = useTranslation();
 
+  const switchLanguage = () => {
+    const current = i18next.language
+    if (current === "zh_CN") {
+      i18next.changeLanguage("en")
+    } else {
+      i18next.changeLanguage("zh_CN")
+    }
+  }
+
   return (
     <Page title="Login">
       <RootStyle>
         <HeaderStyle>
           <Logo/>
           {smUp && (
-            <Typography variant="body2" sx={{mt: {md: -2}}}>
-              {t("login.noAccount")}
-              <Link variant="subtitle2" component={RouterLink} to="/register">
-                {t("login.getStart")}
-              </Link>
-            </Typography>
+            <Grid container spacing={1} direction="row"
+                  justifyContent="end"
+                  alignItems="center">
+              <Grid item>
+                <Typography variant="body2">
+                  {t("login.noAccount")}
+                  <Link variant="subtitle2" component={RouterLink} to="/register">
+                    {t("login.getStart")}
+                  </Link>
+                </Typography>
+              </Grid>
+              <Grid item>
+                <LanguagePopover />
+              </Grid>
+            </Grid>
           )}
         </HeaderStyle>
 
         {mdUp && (
           <SectionStyle>
             <Typography variant="h3" sx={{px: 5, mt: 10, mb: 5}}>
-              Hi, Welcome
+              {t('login.slogan')}
             </Typography>
             <img src="/static/illustrations/illustration_login.png" alt="login"/>
           </SectionStyle>
@@ -90,32 +104,17 @@ export default function Login() {
 
         <Container maxWidth="sm">
           <ContentStyle>
-            <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+            <Typography variant="h4" sx={{mb: 5}} gutterBottom>
+              {t('login.title')}
             </Typography>
-
-            <IconButton onClick={() => {
-              const current = i18next.language
-              if (current === "zh_CN") {
-                i18next.changeLanguage("en")
-              } else {
-                i18next.changeLanguage("zh_CN")
-              }
-            }} edge="end">
-              <Iconify icon='eva:eye-fill'/>
-            </IconButton>
-
-            <Typography sx={{color: 'text.secondary', mb: 5}}>Enter your details below.</Typography>
-
-            <AuthSocial/>
 
             <LoginForm/>
 
             {!smUp && (
               <Typography variant="body2" align="center" sx={{mt: 3}}>
-                Don’t have an account?{' '}
+                  {t("login.noAccount")}
                 <Link variant="subtitle2" component={RouterLink} to="/register">
-                  Get started
+                  {t("login.getStart")}
                 </Link>
               </Typography>
             )}

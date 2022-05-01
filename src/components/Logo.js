@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 // @mui
-import { useTheme } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import {useTheme} from '@mui/material/styles';
+import {Box} from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ Logo.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function Logo({ disabledLink = false, sx }) {
+export default function Logo({disabledLink = false, sx}) {
   const theme = useTheme();
 
   const PRIMARY_LIGHT = theme.palette.primary.light;
@@ -24,20 +24,20 @@ export default function Logo({ disabledLink = false, sx }) {
   // const logo = <Box component="img" src="/static/logo.svg" sx={{ width: 40, height: 40, ...sx }} />
 
   const logo = (
-    <Box sx={{ width: 40, height: 40, ...sx }}>
+    <Box sx={{width: 40, height: 40, ...sx}}>
       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 512 512">
         <defs>
           <linearGradient id="BG1" x1="100%" x2="50%" y1="9.946%" y2="50%">
-            <stop offset="0%" stopColor={PRIMARY_DARK} />
-            <stop offset="100%" stopColor={PRIMARY_MAIN} />
+            <stop offset="0%" stopColor={PRIMARY_DARK}/>
+            <stop offset="100%" stopColor={PRIMARY_MAIN}/>
           </linearGradient>
           <linearGradient id="BG2" x1="50%" x2="50%" y1="0%" y2="100%">
-            <stop offset="0%" stopColor={PRIMARY_LIGHT} />
-            <stop offset="100%" stopColor={PRIMARY_MAIN} />
+            <stop offset="0%" stopColor={PRIMARY_LIGHT}/>
+            <stop offset="100%" stopColor={PRIMARY_MAIN}/>
           </linearGradient>
           <linearGradient id="BG3" x1="50%" x2="50%" y1="0%" y2="100%">
-            <stop offset="0%" stopColor={PRIMARY_LIGHT} />
-            <stop offset="100%" stopColor={PRIMARY_MAIN} />
+            <stop offset="0%" stopColor={PRIMARY_LIGHT}/>
+            <stop offset="100%" stopColor={PRIMARY_MAIN}/>
           </linearGradient>
         </defs>
 
@@ -60,8 +60,10 @@ export default function Logo({ disabledLink = false, sx }) {
   );
 
   if (disabledLink) {
+    // return <img src="/static/logo.png" alt="logo" />
     return <>{logo}</>;
   }
 
-  return <RouterLink to="/">{logo}</RouterLink>;
+  return <RouterLink to="/"><img src="/static/logo.png" alt="logo" width="35" height="35" /> </RouterLink>;
+  // return <RouterLink to="/">{logo}</RouterLink>;
 }

@@ -8,7 +8,7 @@ import Iconify from '../../components/Iconify';
 // ----------------------------------------------------------------------
 
 const APPBAR_MOBILE = 64;
-const APPBAR_DESKTOP = 92;
+// const APPBAR_DESKTOP = 92;
 
 const SearchbarStyle = styled('div')(({ theme }) => ({
   top: 0,
@@ -24,10 +24,10 @@ const SearchbarStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 3),
   boxShadow: theme.customShadows.z8,
   backgroundColor: `${alpha(theme.palette.background.default, 0.72)}`,
-  [theme.breakpoints.up('md')]: {
-    height: APPBAR_DESKTOP,
-    padding: theme.spacing(0, 5),
-  },
+  // [theme.breakpoints.up('md')]: {
+  //   height: APPBAR_DESKTOP,
+  //   padding: theme.spacing(0, 5),
+  // },
 }));
 
 // ----------------------------------------------------------------------

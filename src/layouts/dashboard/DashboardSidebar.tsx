@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
@@ -15,16 +16,14 @@ import NavSection from '../../components/NavSection';
 //
 import navConfig from './NavConfig';
 
-// ----------------------------------------------------------------------
-
 const DRAWER_WIDTH = 280;
 
-const RootStyle = styled('div')(({ theme }) => ({
-  [theme.breakpoints.up('lg')]: {
-    flexShrink: 0,
-    width: DRAWER_WIDTH,
-  },
-}));
+// const RootStyle = styled('div')(({ theme }) => ({
+//   [theme.breakpoints.up('lg')]: {
+//     flexShrink: 0,
+//     width: DRAWER_WIDTH,
+//   },
+// }));
 
 const AccountStyle = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -110,7 +109,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   );
 
   return (
-    <RootStyle>
+    <>
       {!isDesktop && (
         <Drawer
           open={isOpenSidebar}
@@ -123,21 +122,21 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Drawer>
       )}
 
-      {isDesktop && (
-        <Drawer
-          open
-          variant="persistent"
-          PaperProps={{
-            sx: {
-              width: DRAWER_WIDTH,
-              bgcolor: 'background.default',
-              borderRightStyle: 'dashed',
-            },
-          }}
-        >
-          {renderContent}
-        </Drawer>
-      )}
-    </RootStyle>
+      {/*{isDesktop && (*/}
+      {/*  <Drawer*/}
+      {/*    open*/}
+      {/*    variant="persistent"*/}
+      {/*    PaperProps={{*/}
+      {/*      sx: {*/}
+      {/*        width: DRAWER_WIDTH,*/}
+      {/*        bgcolor: 'background.default',*/}
+      {/*        borderRightStyle: 'dashed',*/}
+      {/*      },*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    {renderContent}*/}
+      {/*  </Drawer>*/}
+      {/*)}*/}
+    </>
   );
 }
