@@ -27,7 +27,7 @@
 
 - Support MIU v5.0.0 official release
 - Upgrade some dependencies to the latest versions
-- Update `src/theme/typography.js`
+- Update `src/theme/typography.ts`
 - Upgrade some dependencies to the latest versions
 
 ---

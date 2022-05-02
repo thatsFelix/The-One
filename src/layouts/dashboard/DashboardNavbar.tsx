@@ -42,6 +42,8 @@ export default function DashboardNavbar({onOpenSidebar}) {
   return (
     <RootStyle>
       <ToolbarStyle>
+        <Box component="img" alt="logo" src="/static/logo.png" sx={{ height: 40 }} />
+        <Box component="img" alt="logo-text" src="/static/logo-text.png" sx={{ height: 20, px: 2, display: {xs: 'none', sm: "block" } }} />
         <IconButton onClick={onOpenSidebar} sx={{mr: 1, color: 'text.primary', display: {xs: 'inline-flex', md: 'none'}}}>
           <Iconify icon="eva:menu-2-fill" width={20} height={20}/>
         </IconButton>
