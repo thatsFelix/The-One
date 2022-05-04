@@ -7,13 +7,13 @@ import { fDateTime } from '../../../utils/formatTime';
 
 // ----------------------------------------------------------------------
 
-interface IAppOrderTimeline {
+interface IAppOrderTimelineProps {
   title: string
   subheader?: string
   list: Array<any>
 }
 
-const AppOrderTimeline: FC<IAppOrderTimeline> = ({ title, subheader, list, ...other }) => {
+const AppOrderTimeline: FC<IAppOrderTimelineProps> = ({ title, subheader, list, ...other }) => {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />

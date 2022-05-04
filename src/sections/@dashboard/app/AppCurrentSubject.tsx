@@ -34,7 +34,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-interface IAppCurrentSubject {
+interface IAppCurrentSubjectProps {
   title: string
   subheader?: string
   chartData: Array<any>
@@ -42,7 +42,7 @@ interface IAppCurrentSubject {
   chartLabels: Array<any>,
 }
 
-const AppCurrentSubject:FC<IAppCurrentSubject> = ({ title, subheader, chartData, chartColors, chartLabels, ...other }) => {
+const AppCurrentSubject:FC<IAppCurrentSubjectProps> = ({ title, subheader, chartData, chartColors, chartLabels, ...other }) => {
   const chartOptions = merge(BaseOptionChart(), {
     stroke: { width: 2 },
     fill: { opacity: 0.48 },

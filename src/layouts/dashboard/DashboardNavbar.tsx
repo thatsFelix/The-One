@@ -7,7 +7,7 @@ import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
 import LanguagePopover from './LanguagePopover';
 import NotificationsPopover from './NotificationsPopover';
-import NavSectionHorizontal from '../../components/NavSectionHorizontal.js';
+import NavSectionHorizontal from '../../components/NavSectionHorizontal';
 import NavConfigHorizontal from "./NavConfigHorizontal";
 
 // const DRAWER_WIDTH = 280;

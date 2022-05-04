@@ -5,7 +5,7 @@ import {SxProps} from "@mui/system";
 
 // ----------------------------------------------------------------------
 
-interface IIconify {
+interface IIconifyProps {
   icon: IconifyIcon | string,
   sx?: SxProps<Theme>,
   color?: string
@@ -13,7 +13,7 @@ interface IIconify {
   width?: number
 }
 
-const Iconify: FC<IIconify> = ({icon, sx, ...other}) => {
+const Iconify: FC<IIconifyProps> = ({icon, sx, ...other}) => {
   return <Box component={Icon} icon={icon} sx={{...sx}} {...other} />;
 }
 

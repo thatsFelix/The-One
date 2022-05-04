@@ -2,13 +2,13 @@ import React, {FC} from "react";
 import { Box, Card, Paper, Typography, CardHeader, CardContent } from '@mui/material';
 import { fShortenNumber } from '../../../utils/formatNumber';
 
-interface IAppTrafficBySite {
+interface IAppTrafficBySiteProps {
   title: string
   subheader?: string
   list: Array<any>
 }
 
-const AppTrafficBySite: FC<IAppTrafficBySite> = ({ title, subheader, list, ...other }) => {
+const AppTrafficBySite: FC<IAppTrafficBySiteProps> = ({ title, subheader, list, ...other }) => {
   return (
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} />

@@ -1,13 +1,15 @@
-import React from "react";
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { NavLink as RouterLink, matchPath, useLocation } from 'react-router-dom';
-import { alpha, useTheme, styled } from '@mui/material/styles';
-import { Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
+import React, {FC} from "react";
+import {useState} from 'react';
+import {NavLink as RouterLink, matchPath, useLocation, LinkProps} from 'react-router-dom';
+import {alpha, useTheme, styled} from '@mui/material/styles';
+import {Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton, ExtendButtonBase} from '@mui/material';
 import Iconify from './Iconify';
-import { useTranslation } from  "react-i18next"
+import {useTranslation} from "react-i18next"
+import {ListItemButtonProps, ListItemButtonTypeMap} from "@mui/material/ListItemButton/ListItemButton";
+import {OverridableComponent} from "@mui/material/OverridableComponent";
 
-const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props} />)(({ theme }) => ({
+const ListItemStyle = styled((props) => <ListItemButton
+  disableGutters {...props} />)<ListItemButtonProps>(({theme}) => ({
   ...theme.typography.body2,
   height: 48,
   position: 'relative',
@@ -25,18 +27,25 @@ const ListItemIconStyle = styled(ListItemIcon)({
   justifyContent: 'center',
 });
 
-// ----------------------------------------------------------------------
+export interface INavItemProps {
+  item: {
+    path: string
+    title: string
+    icon?: string
+    info?: string
+    children?: Array<{
+      path: string
+      title: string
+    }>
+  }
+  active: (params: any) => any,
+}
 
-NavItem.propTypes = {
-  item: PropTypes.object,
-  active: PropTypes.func,
-};
-
-function NavItem({ item, active }) {
+const NavItem: FC<INavItemProps> = ({item, active}) => {
   const {t} = useTranslation()
   const theme = useTheme();
   const isActiveRoot = active(item.path);
-  const { title, path, icon, info, children } = item;
+  const {title, path, icon, info, children} = item;
   const [open, setOpen] = useState(isActiveRoot);
   const handleOpen = () => {
     setOpen((prev) => !prev);
@@ -53,28 +62,36 @@ function NavItem({ item, active }) {
     fontWeight: 'fontWeightMedium',
   };
 
+  const handle = () => {
+    console.log("handle")
+  }
+
   if (children) {
     return (
       <>
-        <ListItemStyle
-          onClick={handleOpen}
-          sx={{
-            ...(isActiveRoot && activeRootStyle),
-          }}
-        >
+        <ListItemButton component="a" onClick={() => {
+          console.log("ListItemButton Clicked")
+        }} href="#simple-list">
+          <ListItemText primary="Spam"/>
+        </ListItemButton>
+        {/*ExtendButtonBase<ListItemButtonTypeMap>*/}
+
+        <ListItemStyle onClick={handleOpen} sx={{
+          ...(isActiveRoot && activeRootStyle),
+        }}>
           <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
-          <ListItemText disableTypography primary={t(title)} />
+          <ListItemText disableTypography primary={t(title)}/>
           {info && info}
           <Iconify
             icon={open ? 'eva:arrow-ios-downward-fill' : 'eva:arrow-ios-forward-fill'}
-            sx={{ width: 16, height: 16, ml: 1 }}
+            sx={{width: 16, height: 16, ml: 1}}
           />
         </ListItemStyle>
 
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {children.map((item) => {
-              const { title, path } = item;
+              const {title, path} = item;
               const isActiveSub = active(path);
 
               return (
@@ -105,7 +122,7 @@ function NavItem({ item, active }) {
                       }}
                     />
                   </ListItemIconStyle>
-                  <ListItemText disableTypography primary={t(title)} />
+                  <ListItemText disableTypography primary={t(title)}/>
                 </ListItemStyle>
               );
             })}
@@ -124,28 +141,33 @@ function NavItem({ item, active }) {
       }}
     >
       <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
-      <ListItemText disableTypography primary={t(title)} />
+      <ListItemText disableTypography primary={t(title)}/>
       {info && info}
     </ListItemStyle>
   );
 }
 
-NavSection.propTypes = {
-  navConfig: PropTypes.array,
-};
+export interface INavSectionProps {
+  navConfig: Array<{
+    path: string
+    title: string
+  }>,
+}
 
-export default function NavSection({ navConfig, ...other }) {
-  const { pathname } = useLocation();
+const NavSection: FC<INavSectionProps> = ({navConfig, ...other}) => {
+  const {pathname} = useLocation();
 
-  const match = (path) => (path ? !!matchPath({ path, end: false }, pathname) : false);
+  const match = (path) => (path ? !!matchPath({path, end: false}, pathname) : false);
 
   return (
     <Box {...other}>
-      <List disablePadding sx={{ p: 1 }}>
+      <List disablePadding sx={{p: 1}}>
         {navConfig.map((item) => (
-          <NavItem key={item.title} item={item} active={match} />
+          <NavItem key={item.title} item={item} active={match}/>
         ))}
       </List>
     </Box>
   );
 }
+
+export default NavSection

@@ -37,14 +37,14 @@ function IconColor({ sx, ...other }) {
   );
 }
 
-interface IColorManyPicker {
+interface IColorManyPickerProps {
   name: string
   colors: Array<string>,
   onChecked?: (params: any) => any,
   sx: SxProps<Theme>,
 }
 
-const ColorManyPicker: FC<IColorManyPicker> = ({ colors, onChecked, sx, ...other }) => {
+const ColorManyPicker: FC<IColorManyPickerProps> = ({ colors, onChecked, sx, ...other }) => {
   return (
     <Box sx={sx}>
       {colors.map((color) => {

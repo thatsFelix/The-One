@@ -34,11 +34,11 @@ const SimpleBarStyle = styled(SimpleBarReact)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-interface IScrollbar {
+interface IScrollbarProps {
   sx?: SxProps<Theme>,
 }
 
-const Scrollbar: FC<IScrollbar> = ({ children, sx, ...other }) => {
+const Scrollbar: FC<IScrollbarProps> = ({ children, sx, ...other }) => {
   const userAgent = typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent;
 
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);

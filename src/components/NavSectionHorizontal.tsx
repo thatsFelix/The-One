@@ -1,15 +1,15 @@
+import React, {FC} from "react";
 import {useState} from 'react';
 import PropTypes from 'prop-types';
 import {NavLink as RouterLink, matchPath, useLocation} from 'react-router-dom';
-// material
 import {alpha, useTheme, styled} from '@mui/material/styles';
 import {Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton, Grid} from '@mui/material';
 import {useTranslation} from "react-i18next"
 import Iconify from './Iconify';
+import {INavItemProps, INavSectionProps} from "@/components/NavSection";
 
-// ----------------------------------------------------------------------
 
-const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props} />)(({theme}) => ({
+const ListItemStyle = styled<any>((props) => <ListItemButton disableGutters {...props} />)(({theme}) => ({
   ...theme.typography.body2,
   height: 40,
   lineHeight: 1,
@@ -19,12 +19,9 @@ const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props
   borderRadius: theme.shape.borderRadius,
 }));
 
-NavItem.propTypes = {
-  item: PropTypes.object,
-  active: PropTypes.func,
-};
 
-function NavItem({item, active}) {
+
+const NavItem: FC<INavItemProps> = ({item, active}) => {
   // const isDesktop = useResponsive('up', 'lg');
   const {t} = useTranslation()
   const theme = useTheme();
@@ -124,18 +121,14 @@ function NavItem({item, active}) {
   );
 }
 
-NavSectionHorizontal.propTypes = {
-  navConfig: PropTypes.array,
-};
-
-export default function NavSectionHorizontal({navConfig, ...other}) {
+const NavSectionHorizontal: FC<INavSectionProps> = ({navConfig, ...other}) => {
   const {pathname} = useLocation();
 
   const match = (path) => (path ? !!matchPath({path, end: false}, pathname) : false);
 
   return (
     <Box {...other}>
-      <Grid container direction="row" sx={{px: {xs: 0, md: 1}}} direction="row">
+      <Grid container direction="row" sx={{px: {xs: 0, md: 1}}} >
         {navConfig.map((item) => (
           <NavItem key={item.title} item={item} active={match}/>
         ))}
@@ -143,3 +136,5 @@ export default function NavSectionHorizontal({navConfig, ...other}) {
     </Box>
   );
 }
+
+export default NavSectionHorizontal

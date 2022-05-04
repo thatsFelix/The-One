@@ -6,13 +6,13 @@ import { Card, Stack, Divider, Checkbox, MenuItem, IconButton, CardHeader, FormC
 import Iconify from '../../../components/Iconify';
 import MenuPopover from '../../../components/MenuPopover';
 
-interface IAppTasks {
+interface IAppTasksProps {
   title: string
   subheader?: string
   list: Array<any>
 }
 
-const AppTasks: FC<IAppTasks> = ({ title, subheader, list, ...other }) => {
+const AppTasks: FC<IAppTasksProps> = ({ title, subheader, list, ...other }) => {
   const formik = useFormik({
     initialValues: {
       checked: [list[2].id],
